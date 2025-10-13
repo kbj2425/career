@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로봇공학기술자 카드뉴스</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 40px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 14px;
+            color: #999;
+            font-weight: 600;
+        }
+        
+        /* Card 1 - 메인 */
+        .card-1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .card-1 h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .card-1 .subtitle {
+            font-size: 20px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .card-1 .icon {
+            font-size: 100px;
+            margin-bottom: 30px;
+        }
+        
+        /* Card 2 - 하는 일 */
+        .card-2 {
+            background: #f8f9fa;
+        }
+        
+        .card-2 h2 {
+            font-size: 36px;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        
+        .card-2 p {
+            font-size: 20px;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        /* Card 3 - 만족도 */
+        .card-3 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .card-3 h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+        
+        .satisfaction-box {
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .satisfaction-box .label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        
+        .satisfaction-box .value {
+            font-size: 52px;
+            font-weight: 800;
+        }
+        
+        /* Card 4 - 전망 */
+        .card-4 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .card-4 h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+        
+        .prospect-box {
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .prospect-box .number {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        
+        .prospect-box .text {
+            font-size: 18px;
+        }
+        
+        /* Card 5 - 필요 능력 */
+        .card-5 h2 {
+            font-size: 32px;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        
+        .skill-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        /* Card 6 - 교육 */
+        .card-6 {
+            background: #f8f9fa;
+        }
+        
+        .card-6 h2 {
+            font-size: 32px;
+            color: #f5576c;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        
+        .education-section {
+            margin-bottom: 25px;
+        }
+        
+        .education-section h3 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .education-section p {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        /* Card 7 - 마무리 */
+        .card-7 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .card-7 .emoji {
+            font-size: 80px;
+            margin-bottom: 30px;
+        }
+        
+        .card-7 h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .card-7 p {
+            font-size: 20px;
+            line-height: 1.7;
+            opacity: 0.95;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Card 1: 메인 -->
+        <div class="card card-1">
+            <div class="card-number">1/7</div>
+            <div class="icon">🤖</div>
+            <h1>로봇공학<br>기술자</h1>
+            <div class="subtitle">미래를 만드는<br>혁신적인 직업</div>
+        </div>
+        
+        <!-- Card 2: 하는 일 -->
+        <div class="card card-2">
+            <div class="card-number">2/7</div>
+            <h2>무슨 일을<br>할까요?</h2>
+            <p>로봇의 구성요소와 주변장치를 설계·제작하고, 시험평가를 통해 로봇기구를 개발합니다.</p>
+        </div>
+        
+        <!-- Card 3: 만족도 -->
+        <div class="card card-3">
+            <div class="card-number">3/7</div>
+            <h2>직업 만족도</h2>
+            <div class="satisfaction-box">
+                <div class="label">만족도</div>
+                <div class="value">72.5%</div>
+            </div>
+            <div style="font-size: 24px; font-weight: 600;">좋음 👍</div>
+        </div>
+        
+        <!-- Card 4: 전망 -->
+        <div class="card card-4">
+            <div class="card-number">4/7</div>
+            <h2>일자리 전망</h2>
+            <div class="prospect-box">
+                <div class="number">75%</div>
+                <div class="text">증가 예상</div>
+            </div>
+            <div class="prospect-box" style="background: rgba(255,255,255,0.15);">
+                <div class="text" style="font-size: 16px;">감소 5% | 유지 19% | 증가 75%</div>
+            </div>
+        </div>
+        
+        <!-- Card 5: 필요 능력 -->
+        <div class="card card-5">
+            <div class="card-number">5/7</div>
+            <h2>핵심 능력</h2>
+            <div class="skill-item">💡 창의력</div>
+            <div class="skill-item">🎯 공간지각력</div>
+            <div class="skill-item">⚙️ 기술 설계</div>
+            <div class="skill-item">🔍 기술 분석</div>
+            <div class="skill-item">📊 조직체계 분석</div>
+        </div>
+        
+        <!-- Card 6: 교육 경로 -->
+        <div class="card card-6">
+            <div class="card-number">6/7</div>
+            <h2>어떻게<br>준비할까요?</h2>
+            <div class="education-section">
+                <h3>📚 관련 학과</h3>
+                <p>기계공학, 전자공학, 제어계측공학, 메카트로닉스공학 등</p>
+            </div>
+            <div class="education-section">
+                <h3>📜 관련 자격</h3>
+                <p>기계설계 기사/산업기사, 메카트로닉스 기사/산업기사</p>
+            </div>
+        </div>
+        
+        <!-- Card 7: 마무리 -->
+        <div class="card card-7">
+            <div class="card-number">7/7</div>
+            <div class="emoji">🚀</div>
+            <h2>미래를 향한<br>첫 걸음!</h2>
+            <p>로봇공학기술자는<br>높은 만족도와 밝은 전망을 가진<br>유망한 직업입니다</p>
+        </div>
+    </div>
+</body>
+</html>
