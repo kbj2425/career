@@ -18,32 +18,41 @@
         }
         
         .container {
-            max-width: 500px;
+            max-width: 700px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 30px;
         }
         
         .card {
             background: white;
-            border-radius: 20px;
-            padding: 50px 40px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            min-height: 600px;
+            border-radius: 30px;
+            padding: 70px 60px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            min-height: 800px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             position: relative;
             overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
         }
         
         .card-number {
             position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 14px;
+            top: 30px;
+            right: 40px;
+            font-size: 18px;
             color: #999;
-            font-weight: 600;
+            font-weight: 700;
+            background: rgba(255,255,255,0.9);
+            padding: 8px 16px;
+            border-radius: 20px;
         }
         
         /* Card 1 - 메인 */
@@ -51,41 +60,82 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-align: center;
+            position: relative;
+        }
+        
+        .card-1::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
         .card-1 h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            font-weight: 800;
+            font-size: 64px;
+            margin-bottom: 30px;
+            font-weight: 900;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
         
         .card-1 .subtitle {
-            font-size: 20px;
-            opacity: 0.9;
-            line-height: 1.6;
+            font-size: 26px;
+            opacity: 0.95;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
         }
         
         .card-1 .icon {
-            font-size: 100px;
-            margin-bottom: 30px;
+            font-size: 140px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
         }
         
         /* Card 2 - 하는 일 */
         .card-2 {
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+        }
+        
+        .card-2::before {
+            content: '⚙️';
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.05;
+            right: -50px;
+            bottom: -50px;
         }
         
         .card-2 h2 {
-            font-size: 36px;
+            font-size: 48px;
             color: #667eea;
-            margin-bottom: 30px;
-            font-weight: 700;
+            margin-bottom: 40px;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
         }
         
         .card-2 p {
-            font-size: 20px;
-            line-height: 1.8;
+            font-size: 26px;
+            line-height: 2;
             color: #333;
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
         }
         
         /* Card 3 - 만족도 */
@@ -93,31 +143,62 @@
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-3::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            top: -200px;
+            left: -200px;
+        }
+        
+        .card-3::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            bottom: -150px;
+            right: -150px;
         }
         
         .card-3 h2 {
-            font-size: 32px;
-            margin-bottom: 40px;
-            font-weight: 700;
+            font-size: 42px;
+            margin-bottom: 50px;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
         }
         
         .satisfaction-box {
-            background: rgba(255,255,255,0.2);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.25);
+            border-radius: 25px;
+            padding: 45px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255,255,255,0.3);
+            position: relative;
+            z-index: 1;
         }
         
         .satisfaction-box .label {
-            font-size: 18px;
-            margin-bottom: 10px;
-            opacity: 0.9;
+            font-size: 22px;
+            margin-bottom: 15px;
+            opacity: 0.95;
+            font-weight: 600;
         }
         
         .satisfaction-box .value {
-            font-size: 52px;
-            font-weight: 800;
+            font-size: 72px;
+            font-weight: 900;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
         
         /* Card 4 - 전망 */
@@ -125,78 +206,113 @@
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             color: white;
             text-align: center;
+            position: relative;
+        }
+        
+        .card-4::before {
+            content: '📈';
+            position: absolute;
+            font-size: 250px;
+            opacity: 0.1;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
         
         .card-4 h2 {
-            font-size: 32px;
-            margin-bottom: 40px;
-            font-weight: 700;
+            font-size: 42px;
+            margin-bottom: 50px;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
         }
         
         .prospect-box {
-            background: rgba(255,255,255,0.2);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.25);
+            border-radius: 25px;
+            padding: 35px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255,255,255,0.3);
+            position: relative;
+            z-index: 1;
         }
         
         .prospect-box .number {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 10px;
+            font-size: 68px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
         
         .prospect-box .text {
-            font-size: 18px;
+            font-size: 24px;
+            font-weight: 600;
         }
         
         /* Card 5 - 필요 능력 */
+        .card-5 {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+        
         .card-5 h2 {
-            font-size: 32px;
-            color: #667eea;
-            margin-bottom: 30px;
-            font-weight: 700;
+            font-size: 42px;
+            color: #d63031;
+            margin-bottom: 40px;
+            font-weight: 800;
         }
         
         .skill-item {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 20px 25px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            font-size: 18px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            padding: 28px 35px;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .skill-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
         }
         
         /* Card 6 - 교육 */
         .card-6 {
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
         }
         
         .card-6 h2 {
-            font-size: 32px;
-            color: #f5576c;
-            margin-bottom: 30px;
-            font-weight: 700;
+            font-size: 42px;
+            color: #6c5ce7;
+            margin-bottom: 40px;
+            font-weight: 800;
         }
         
         .education-section {
-            margin-bottom: 25px;
+            margin-bottom: 35px;
+            background: rgba(255,255,255,0.7);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid rgba(255,255,255,0.9);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
         
         .education-section h3 {
-            font-size: 22px;
-            color: #333;
-            margin-bottom: 15px;
-            font-weight: 700;
+            font-size: 28px;
+            color: #2d3436;
+            margin-bottom: 18px;
+            font-weight: 800;
         }
         
         .education-section p {
-            font-size: 17px;
-            line-height: 1.7;
-            color: #555;
+            font-size: 21px;
+            line-height: 1.8;
+            color: #2d3436;
+            font-weight: 500;
         }
         
         /* Card 7 - 마무리 */
@@ -204,23 +320,51 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-7::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            top: -250px;
+            right: -250px;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.1); opacity: 0.15; }
         }
         
         .card-7 .emoji {
-            font-size: 80px;
-            margin-bottom: 30px;
+            font-size: 120px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
         }
         
         .card-7 h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            font-weight: 700;
+            font-size: 48px;
+            margin-bottom: 30px;
+            font-weight: 900;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
         
         .card-7 p {
-            font-size: 20px;
-            line-height: 1.7;
+            font-size: 26px;
+            line-height: 1.9;
             opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
         }
     </style>
 </head>
