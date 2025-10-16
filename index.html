@@ -30,6 +30,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-top: 80px;
         }
         
         .slideshow-container {
@@ -563,7 +564,8 @@
     </style>
 </head>
 <body>
-    <div class="slideshow-container">
+    <div id="zoom-wrapper">
+        <div class="slideshow-container">
         <!-- Navigation Arrows -->
         <div class="nav-arrow left" onclick="changeSlide(-1)">‹</div>
         <div class="nav-arrow right" onclick="changeSlide(1)">›</div>
@@ -724,6 +726,7 @@
             <div class="dot" onclick="goToSlide(7)"></div>
             <div class="dot" onclick="goToSlide(8)"></div>
         </div>
+    </div>
     </div>
     
     <script>
