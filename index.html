@@ -14,48 +14,115 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #1a1a1a;
-            overflow-x: hidden;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        .container {
-            max-width: 805px;
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            max-width: 765px;
+            height: 874px;
             margin: 0 auto;
-            padding: 35px;
         }
         
         .card {
+            display: none;
             background: white;
-            border-radius: 35px;
-            padding: 80px 69px;
-            margin-bottom: 35px;
-            box-shadow: 0 23px 69px rgba(0,0,0,0.3);
-            min-height: 920px;
-            display: flex;
+            border-radius: 33px;
+            padding: 76px 66px;
+            box-shadow: 0 22px 66px rgba(0,0,0,0.3);
+            height: 874px;
             flex-direction: column;
             justify-content: center;
             position: relative;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            animation: fadeIn 0.5s;
         }
         
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 29px 80px rgba(0,0,0,0.4);
+        .card.active {
+            display: flex;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
         
         .card-number {
             position: absolute;
-            top: 30px;
-            right: 40px;
-            font-size: 18px;
+            top: 33px;
+            right: 44px;
+            font-size: 20px;
             color: #999;
             font-weight: 700;
             background: rgba(255,255,255,0.9);
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 9px 17px;
+            border-radius: 22px;
         }
         
-        /* Card 1 - 메인 */
+        /* Navigation Arrows */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 50px;
+            color: white;
+            background: rgba(0,0,0,0.5);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 50%;
+            user-select: none;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .nav-arrow:hover {
+            background: rgba(0,0,0,0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .nav-arrow.left {
+            left: -80px;
+        }
+        
+        .nav-arrow.right {
+            right: -80px;
+        }
+        
+        /* Progress Dots */
+        .progress-dots {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background: white;
+            width: 40px;
+            border-radius: 6px;
+        }
+        
+        /* Card 1 - 직업명 */
         .card-1 {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -80,16 +147,16 @@
         }
         
         .card-1 h1 {
-            font-size: 64px;
-            margin-bottom: 30px;
+            font-size: 70px;
+            margin-bottom: 33px;
             font-weight: 900;
             position: relative;
             z-index: 1;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            text-shadow: 0 5px 22px rgba(0,0,0,0.2);
         }
         
         .card-1 .subtitle {
-            font-size: 26px;
+            font-size: 29px;
             opacity: 0.95;
             line-height: 1.8;
             position: relative;
@@ -98,39 +165,83 @@
         }
         
         .card-1 .icon {
-            font-size: 140px;
-            margin-bottom: 40px;
+            font-size: 153px;
+            margin-bottom: 44px;
             position: relative;
             z-index: 1;
-            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 11px 33px rgba(0,0,0,0.3));
         }
         
-        /* Card 2 - 하는 일 */
+        /* Card 2 - 선택이유 */
         .card-2 {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
             position: relative;
         }
         
         .card-2::before {
-            content: '⚙️';
+            content: '💡';
             position: absolute;
-            font-size: 300px;
-            opacity: 0.05;
-            right: -50px;
-            bottom: -50px;
+            font-size: 238px;
+            opacity: 0.08;
+            right: -29px;
+            top: 50%;
+            transform: translateY(-50%);
         }
         
         .card-2 h2 {
-            font-size: 48px;
-            color: #667eea;
-            margin-bottom: 40px;
+            font-size: 52px;
+            color: #d63031;
+            margin-bottom: 44px;
             font-weight: 800;
             position: relative;
             z-index: 1;
         }
         
-        .card-2 p {
-            font-size: 26px;
+        .reason-item {
+            background: rgba(255,255,255,0.8);
+            padding: 27px 33px;
+            border-radius: 19px;
+            margin-bottom: 19px;
+            font-size: 23px;
+            line-height: 1.7;
+            color: #2d3436;
+            font-weight: 600;
+            box-shadow: 0 5px 19px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .reason-item strong {
+            color: #d63031;
+            font-size: 25px;
+        }
+        
+        /* Card 3 - 하는 일 */
+        .card-3 {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+        }
+        
+        .card-3::before {
+            content: '⚙️';
+            position: absolute;
+            font-size: 328px;
+            opacity: 0.05;
+            right: -55px;
+            bottom: -55px;
+        }
+        
+        .card-3 h2 {
+            font-size: 52px;
+            color: #667eea;
+            margin-bottom: 44px;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .card-3 p {
+            font-size: 29px;
             line-height: 2;
             color: #333;
             position: relative;
@@ -138,8 +249,43 @@
             font-weight: 500;
         }
         
-        /* Card 3 - 만족도 */
-        .card-3 {
+        /* Card 4 - 관련교육 및 자격 */
+        .card-4 {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        
+        .card-4 h2 {
+            font-size: 46px;
+            color: #6c5ce7;
+            margin-bottom: 44px;
+            font-weight: 800;
+        }
+        
+        .education-section {
+            margin-bottom: 38px;
+            background: rgba(255,255,255,0.7);
+            padding: 33px;
+            border-radius: 22px;
+            border: 2px solid rgba(255,255,255,0.9);
+            box-shadow: 0 6px 22px rgba(0,0,0,0.1);
+        }
+        
+        .education-section h3 {
+            font-size: 30px;
+            color: #2d3436;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .education-section p {
+            font-size: 23px;
+            line-height: 1.8;
+            color: #2d3436;
+            font-weight: 500;
+        }
+        
+        /* Card 5 - 만족도 및 전망 */
+        .card-5 {
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
             text-align: center;
@@ -147,176 +293,201 @@
             overflow: hidden;
         }
         
-        .card-3::before {
+        .card-5::before {
             content: '';
             position: absolute;
-            width: 400px;
-            height: 400px;
+            width: 437px;
+            height: 437px;
             border-radius: 50%;
             background: rgba(255,255,255,0.1);
-            top: -200px;
-            left: -200px;
+            top: -219px;
+            left: -219px;
         }
         
-        .card-3::after {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            bottom: -150px;
-            right: -150px;
-        }
-        
-        .card-3 h2 {
-            font-size: 42px;
-            margin-bottom: 50px;
+        .card-5 h2 {
+            font-size: 46px;
+            margin-bottom: 48px;
             font-weight: 800;
             position: relative;
             z-index: 1;
         }
         
-        .satisfaction-box {
-            background: rgba(255,255,255,0.25);
-            border-radius: 25px;
-            padding: 45px;
-            margin-bottom: 40px;
-            backdrop-filter: blur(15px);
-            border: 2px solid rgba(255,255,255,0.3);
+        .stats-container {
+            display: flex;
+            gap: 29px;
             position: relative;
             z-index: 1;
         }
         
-        .satisfaction-box .label {
-            font-size: 22px;
-            margin-bottom: 15px;
+        .stat-box {
+            flex: 1;
+            background: rgba(255,255,255,0.25);
+            border-radius: 24px;
+            padding: 38px 29px;
+            backdrop-filter: blur(14px);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .stat-box .label {
+            font-size: 21px;
+            margin-bottom: 14px;
             opacity: 0.95;
             font-weight: 600;
         }
         
-        .satisfaction-box .value {
-            font-size: 72px;
+        .stat-box .value {
+            font-size: 53px;
             font-weight: 900;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            text-shadow: 0 4px 19px rgba(0,0,0,0.2);
         }
         
-        /* Card 4 - 전망 */
-        .card-4 {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: white;
-            text-align: center;
-            position: relative;
+        .stat-box .sub-text {
+            font-size: 17px;
+            margin-top: 14px;
+            opacity: 0.9;
         }
         
-        .card-4::before {
-            content: '📈';
-            position: absolute;
-            font-size: 250px;
-            opacity: 0.1;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
+        /* Card 6 - 업무 특성 */
+        .card-6 {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
         }
         
-        .card-4 h2 {
-            font-size: 42px;
-            margin-bottom: 50px;
+        .card-6 h2 {
+            font-size: 46px;
+            color: #5f27cd;
+            margin-bottom: 38px;
             font-weight: 800;
-            position: relative;
-            z-index: 1;
         }
         
-        .prospect-box {
-            background: rgba(255,255,255,0.25);
-            border-radius: 25px;
-            padding: 35px;
-            margin-bottom: 25px;
-            backdrop-filter: blur(15px);
-            border: 2px solid rgba(255,255,255,0.3);
-            position: relative;
-            z-index: 1;
+        .characteristic-section {
+            margin-bottom: 29px;
         }
         
-        .prospect-box .number {
-            font-size: 68px;
-            font-weight: 900;
-            margin-bottom: 15px;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        .characteristic-section h3 {
+            font-size: 27px;
+            color: #2d3436;
+            margin-bottom: 17px;
+            font-weight: 800;
         }
         
-        .prospect-box .text {
-            font-size: 24px;
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 11px;
+        }
+        
+        .tag {
+            background: white;
+            padding: 11px 21px;
+            border-radius: 24px;
+            font-size: 19px;
             font-weight: 600;
+            color: #5f27cd;
+            box-shadow: 0 3px 14px rgba(0,0,0,0.1);
         }
         
-        /* Card 5 - 필요 능력 */
-        .card-5 {
+        /* Card 7 - 필요기술 및 지식 */
+        .card-7 {
             background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
         }
         
-        .card-5 h2 {
-            font-size: 42px;
+        .card-7 h2 {
+            font-size: 46px;
             color: #d63031;
-            margin-bottom: 40px;
+            margin-bottom: 44px;
             font-weight: 800;
         }
         
         .skill-item {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 28px 35px;
-            border-radius: 18px;
-            margin-bottom: 20px;
-            font-size: 24px;
+            padding: 27px 33px;
+            border-radius: 17px;
+            margin-bottom: 17px;
+            font-size: 23px;
             font-weight: 700;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
             transition: all 0.3s ease;
             border: 2px solid rgba(255,255,255,0.3);
         }
         
-        .skill-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+        .tech-section {
+            margin-top: 29px;
         }
         
-        /* Card 6 - 교육 */
-        .card-6 {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-        }
-        
-        .card-6 h2 {
-            font-size: 42px;
-            color: #6c5ce7;
-            margin-bottom: 40px;
-            font-weight: 800;
-        }
-        
-        .education-section {
-            margin-bottom: 35px;
-            background: rgba(255,255,255,0.7);
-            padding: 30px;
-            border-radius: 20px;
-            border: 2px solid rgba(255,255,255,0.9);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .education-section h3 {
-            font-size: 28px;
+        .tech-section h3 {
+            font-size: 25px;
             color: #2d3436;
-            margin-bottom: 18px;
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+        
+        .tech-section p {
+            font-size: 19px;
+            color: #636e72;
+            line-height: 1.6;
+        }
+        
+        /* Card 8 - 임금 */
+        .card-8 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .card-8::before {
+            content: '💰';
+            position: absolute;
+            font-size: 238px;
+            opacity: 0.1;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .card-8 h2 {
+            font-size: 46px;
+            margin-bottom: 57px;
             font-weight: 800;
+            position: relative;
+            z-index: 1;
         }
         
-        .education-section p {
-            font-size: 21px;
-            line-height: 1.8;
-            color: #2d3436;
-            font-weight: 500;
+        .salary-box {
+            background: rgba(255,255,255,0.25);
+            border-radius: 24px;
+            padding: 43px;
+            margin-bottom: 29px;
+            backdrop-filter: blur(14px);
+            border: 2px solid rgba(255,255,255,0.3);
+            position: relative;
+            z-index: 1;
         }
         
-        /* Card 7 - 마무리 */
-        .card-7 {
+        .salary-box .label {
+            font-size: 23px;
+            margin-bottom: 14px;
+            opacity: 0.95;
+            font-weight: 600;
+        }
+        
+        .salary-box .value {
+            font-size: 61px;
+            font-weight: 900;
+            text-shadow: 0 4px 19px rgba(0,0,0,0.2);
+        }
+        
+        .salary-note {
+            font-size: 19px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            margin-top: 19px;
+        }
+        
+        /* Card 9 - 출처 */
+        .card-9 {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-align: center;
@@ -324,15 +495,15 @@
             overflow: hidden;
         }
         
-        .card-7::before {
+        .card-9::before {
             content: '';
             position: absolute;
-            width: 500px;
-            height: 500px;
+            width: 575px;
+            height: 575px;
             border-radius: 50%;
             background: rgba(255,255,255,0.1);
-            top: -250px;
-            right: -250px;
+            top: -288px;
+            right: -288px;
             animation: pulse 3s ease-in-out infinite;
         }
         
@@ -341,106 +512,247 @@
             50% { transform: scale(1.1); opacity: 0.15; }
         }
         
-        .card-7 .emoji {
+        .card-9 .icon {
             font-size: 120px;
             margin-bottom: 40px;
             position: relative;
             z-index: 1;
-            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
         }
         
-        .card-7 h2 {
+        .card-9 h2 {
             font-size: 48px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             font-weight: 900;
             position: relative;
             z-index: 1;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            text-shadow: 0 5px 23px rgba(0,0,0,0.2);
         }
         
-        .card-7 p {
-            font-size: 26px;
-            line-height: 1.9;
-            opacity: 0.95;
+        .source-box {
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
             position: relative;
             z-index: 1;
-            font-weight: 500;
+        }
+        
+        .source-box h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .source-box p {
+            font-size: 22px;
+            opacity: 0.95;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Card 1: 메인 -->
-        <div class="card card-1">
-            <div class="card-number">1/7</div>
+    <div class="slideshow-container">
+        <!-- Navigation Arrows -->
+        <div class="nav-arrow left" onclick="changeSlide(-1)">‹</div>
+        <div class="nav-arrow right" onclick="changeSlide(1)">›</div>
+        
+        <!-- Card 1: 직업명 -->
+        <div class="card card-1 active">
+            <div class="card-number">1/9</div>
             <div class="icon">🤖</div>
             <h1>로봇공학<br>기술자</h1>
             <div class="subtitle">미래를 만드는<br>혁신적인 직업</div>
         </div>
         
-        <!-- Card 2: 하는 일 -->
+        <!-- Card 2: 선택이유 -->
         <div class="card card-2">
-            <div class="card-number">2/7</div>
-            <h2>무슨 일을<br>할까요?</h2>
-            <p>로봇의 구성요소와 주변장치를 설계·제작하고, 시험평가를 통해 로봇기구를 개발합니다.</p>
+            <div class="card-number">2/9</div>
+            <h2>선택 이유</h2>
+            <div class="reason-item">
+                <strong>🚀 미래 유망 분야</strong><br>
+                AI와 자동화 기술의 발전으로 로봇공학의 중요성이 급증하고 있습니다
+            </div>
+            <div class="reason-item">
+                <strong>💡 창의적 문제 해결</strong><br>
+                다양한 기술을 융합하여 혁신적인 솔루션을 만들어냅니다
+            </div>
+            <div class="reason-item">
+                <strong>🌍 사회 기여</strong><br>
+                산업, 의료, 생활 전반에 걸쳐 인류의 삶을 개선합니다
+            </div>
         </div>
         
-        <!-- Card 3: 만족도 -->
+        <!-- Card 3: 하는 일 -->
         <div class="card card-3">
-            <div class="card-number">3/7</div>
-            <h2>직업 만족도</h2>
-            <div class="satisfaction-box">
-                <div class="label">만족도</div>
-                <div class="value">72.5%</div>
-            </div>
-            <div style="font-size: 24px; font-weight: 600;">좋음 👍</div>
+            <div class="card-number">3/9</div>
+            <h2>하는 일</h2>
+            <p>로봇의 구성요소 및 주변장치, 툴 등을 설계·제작하고 시험평가 결과를 반영하여 로봇기구를 개발합니다.</p>
         </div>
         
-        <!-- Card 4: 전망 -->
+        <!-- Card 4: 관련교육 및 자격 -->
         <div class="card card-4">
-            <div class="card-number">4/7</div>
-            <h2>일자리 전망</h2>
-            <div class="prospect-box">
-                <div class="number">75%</div>
-                <div class="text">증가 예상</div>
-            </div>
-            <div class="prospect-box" style="background: rgba(255,255,255,0.15);">
-                <div class="text" style="font-size: 16px;">감소 5% | 유지 19% | 증가 75%</div>
-            </div>
-        </div>
-        
-        <!-- Card 5: 필요 능력 -->
-        <div class="card card-5">
-            <div class="card-number">5/7</div>
-            <h2>핵심 능력</h2>
-            <div class="skill-item">💡 창의력</div>
-            <div class="skill-item">🎯 공간지각력</div>
-            <div class="skill-item">⚙️ 기술 설계</div>
-            <div class="skill-item">🔍 기술 분석</div>
-            <div class="skill-item">📊 조직체계 분석</div>
-        </div>
-        
-        <!-- Card 6: 교육 경로 -->
-        <div class="card card-6">
-            <div class="card-number">6/7</div>
-            <h2>어떻게<br>준비할까요?</h2>
+            <div class="card-number">4/9</div>
+            <h2>관련 교육 및 자격</h2>
             <div class="education-section">
                 <h3>📚 관련 학과</h3>
-                <p>기계공학, 전자공학, 제어계측공학, 메카트로닉스공학 등</p>
+                <p>기계공학, 전자공학, 제어계측공학, 메카트로닉스공학, 반도체·세라믹공학</p>
             </div>
             <div class="education-section">
                 <h3>📜 관련 자격</h3>
-                <p>기계설계 기사/산업기사, 메카트로닉스 기사/산업기사</p>
+                <p>기계설계 산업기사/기사/기술사<br>메카트로닉스 산업기사/기사<br>항공정비사</p>
             </div>
         </div>
         
-        <!-- Card 7: 마무리 -->
+        <!-- Card 5: 만족도 및 전망 -->
+        <div class="card card-5">
+            <div class="card-number">5/9</div>
+            <h2>만족도 및 전망</h2>
+            <div class="stats-container">
+                <div class="stat-box">
+                    <div class="label">직업 만족도</div>
+                    <div class="value">72.5%</div>
+                    <div class="sub-text">좋음 👍</div>
+                </div>
+                <div class="stat-box">
+                    <div class="label">일자리 전망</div>
+                    <div class="value">75%</div>
+                    <div class="sub-text">증가 예상 📈</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card 6: 업무 특성 -->
+        <div class="card card-6">
+            <div class="card-number">6/9</div>
+            <h2>업무 특성</h2>
+            <div class="characteristic-section">
+                <h3>💪 핵심 능력</h3>
+                <div class="tag-container">
+                    <div class="tag">창의력</div>
+                    <div class="tag">공간지각력</div>
+                    <div class="tag">기술 설계</div>
+                    <div class="tag">기술 분석</div>
+                    <div class="tag">조직체계 분석</div>
+                </div>
+            </div>
+            <div class="characteristic-section">
+                <h3>📖 필요 지식</h3>
+                <div class="tag-container">
+                    <div class="tag">물리</div>
+                    <div class="tag">공학과 기술</div>
+                    <div class="tag">기계</div>
+                    <div class="tag">수학</div>
+                    <div class="tag">컴퓨터</div>
+                </div>
+            </div>
+            <div class="characteristic-section">
+                <h3>🎯 성격</h3>
+                <div class="tag-container">
+                    <div class="tag">혁신</div>
+                    <div class="tag">분석적 사고</div>
+                    <div class="tag">성취지향</div>
+                    <div class="tag">협조</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card 7: 필요기술 및 지식 -->
         <div class="card card-7">
-            <div class="card-number">7/7</div>
-            <div class="emoji">🚀</div>
-            <h2>미래를 향한<br>첫 걸음!</h2>
-            <p>로봇공학기술자는<br>높은 만족도와 밝은 전망을 가진<br>유망한 직업입니다</p>
+            <div class="card-number">7/9</div>
+            <h2>필요 기술 및 지식</h2>
+            <div class="skill-item">🎓 이공계열 학과 전공 필수</div>
+            <div class="skill-item">💻 로봇 설계 및 운영 기술</div>
+            <div class="skill-item">⚡ 전기·전자·기계 지식</div>
+            <div class="skill-item">🔧 실습 및 경진대회 경험</div>
+            
+            <div class="tech-section">
+                <h3>주요 소프트웨어</h3>
+                <p>C++, CATIA, MATLAB, ROS, SOLIDWORKS</p>
+            </div>
+        </div>
+        
+        <!-- Card 8: 임금 -->
+        <div class="card card-8">
+            <div class="card-number">8/9</div>
+            <h2>연봉 정보</h2>
+            <div class="salary-box">
+                <div class="label">평균 연봉</div>
+                <div class="value">4,500만원</div>
+            </div>
+            <div class="salary-note">
+                * 경력과 기업 규모에 따라 차이가 있을 수 있습니다<br>
+                * 신입 ~ 경력자까지 다양한 연봉 범위
+            </div>
+        </div>
+        
+        <!-- Card 9: 출처 -->
+        <div class="card card-9">
+            <div class="card-number">9/9</div>
+            <div class="icon">📚</div>
+            <h2>정보 출처</h2>
+            <div class="source-box">
+                <h3>워크넷 고용24</h3>
+                <p>한국고용정보원에서 운영하는<br>직업·진로 정보 제공 서비스</p>
+            </div>
+            <div class="source-box">
+                <h3>www.work.go.kr</h3>
+                <p>더 많은 직업 정보를 확인하세요!</p>
+            </div>
+        </div>
+        
+        <!-- Progress Dots -->
+        <div class="progress-dots">
+            <div class="dot active" onclick="goToSlide(0)"></div>
+            <div class="dot" onclick="goToSlide(1)"></div>
+            <div class="dot" onclick="goToSlide(2)"></div>
+            <div class="dot" onclick="goToSlide(3)"></div>
+            <div class="dot" onclick="goToSlide(4)"></div>
+            <div class="dot" onclick="goToSlide(5)"></div>
+            <div class="dot" onclick="goToSlide(6)"></div>
+            <div class="dot" onclick="goToSlide(7)"></div>
+            <div class="dot" onclick="goToSlide(8)"></div>
         </div>
     </div>
+    
+    <script>
+        let currentSlide = 0;
+        const cards = document.querySelectorAll('.card');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = cards.length;
+        
+        function showSlide(n) {
+            if (n >= totalSlides) {
+                currentSlide = 0;
+            } else if (n < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = n;
+            }
+            
+            cards.forEach(card => card.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            cards[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+        
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+        
+        function goToSlide(n) {
+            showSlide(n);
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (event.key === 'ArrowRight') {
+                changeSlide(1);
+            }
+        });
+    </script>
 </body>
 </html>
